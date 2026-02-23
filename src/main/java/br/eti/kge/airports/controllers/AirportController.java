@@ -4,6 +4,7 @@
  */
 package br.eti.kge.airports.controllers;
 
+import br.eti.kge.airports.DTO.AirportMinDTO;
 import br.eti.kge.airports.entities.Airport;
 import br.eti.kge.airports.service.AirportService;
 import java.util.List;
@@ -39,8 +40,18 @@ public class AirportController {
             return ResponseEntity.ok(result);
         }
     }
-}
+    @GetMapping("/country/{countryName}")
+    public ResponseEntity<List<AirportMinDTO>> findByCountryIgnoreCase(
+        @PathVariable String countryName) {
 
-    
-    
+    List<AirportMinDTO> result = airportService.findByCountry(countryName);
+
+    if (result.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    } else {
+        return ResponseEntity.ok(result);
+    }
+}
+ 
+}
 

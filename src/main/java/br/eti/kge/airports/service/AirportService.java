@@ -4,6 +4,7 @@
  */
 package br.eti.kge.airports.service;
 
+import br.eti.kge.airports.DTO.AirportMinDTO;
 import br.eti.kge.airports.entities.Airport;
 import br.eti.kge.airports.repository.AirportRepository;
 import java.util.List;
@@ -29,6 +30,14 @@ public class AirportService {
             return result;
         
     }
+        public List<AirportMinDTO> findByCountry(String country){
+            List<Airport> resultAirport = airportRepository.findByCountryIgnoreCase(country);
+            
+            List<AirportMinDTO> resultDTO = resultAirport.stream()
+                    .map(x -> new AirportMinDTO(x)).toList();
+            
+            return resultDTO;
+        }
     
 }
 

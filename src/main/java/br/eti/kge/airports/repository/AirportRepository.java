@@ -12,5 +12,7 @@ import  org.springframework.data.jpa.repository.JpaRepository;
  * @author digma
  */
 public interface AirportRepository extends JpaRepository <Airport, Long>{
- List<Airport> findByCityIgnoreCase(String city);   
+ List<Airport> findByCityIgnoreCase(String city);
+ List<Airport> findByCountryIgnoreCase(String country);
+
 }
